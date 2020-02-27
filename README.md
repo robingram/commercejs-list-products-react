@@ -30,9 +30,9 @@ Create some products in your Chec dashboard with at least a name, description, i
 
 ## App setup
 
-Next we'll create the React app, add bootstrap to simplify the styling and install the Commerce.js SDK.
+Next we'll create the React app, add Bootstrap to simplify the styling and install the Commerce.js SDK.
 
-We'll use `create-react-app` to install the base application. this can be called directly using the `npx` too that is part of Node.js. Change directory to the location on your machine where you want to install the app and run the following commands.
+We'll use `create-react-app` to install the base application. This can be called directly using the `npx` tool that is part of Node.js. Change directory to the location on your machine where you want to install the app and run the following commands.
 
 ```
 npx create-react-app react-list-products
@@ -46,7 +46,7 @@ Next add bootstrap.
 yarn add bootstrap
 ```
 
-Include the bootstrap CSS in your index.js file just before the application's default `index.css` file.:
+Include the bootstrap CSS in your index.js file just before the application's default `index.css` file.
 
 *src/index.js*
 ```
@@ -64,7 +64,7 @@ yarn start
 
 The SDK can be installed in one of two ways. You can include the script from the CDN or install it as a package as part of your application.
 
-To use the CDN add the following line to the `head` of your projects `index.html` file.
+To use the CDN add the following line to the `head` of your project's `index.html` file.
 
 *public/index.html*
 ```
@@ -83,7 +83,7 @@ We'll see how to initialise and use the SDK later.
 
 To begin we'll create a static HTML version of how we want our app to look.
 
-For the moment we'll use the React logo image that is included as part of the standard app as a placeholder for our product images so copy it to the `sr` directory.
+For the moment we'll use the React logo image that is included as part of the standard app as a placeholder for our product images so copy it to the `src` directory.
 
 ```
 cp public/logo192.png src/
@@ -166,7 +166,7 @@ header {
 }
 ```
 
-The application should have reloaded an look something like the image below.
+The application should have reloaded and look something like the image below.
 
 ![Static products list](images/static-products.png)
 
@@ -270,7 +270,7 @@ const ProductRow = () => {
 export default ProductRow;
 ```
 
-Import the new component into `ProductList.js`. Again, you can remove import of `SampleImage`.
+Import the new component into `ProductList.js` and replace the static HTML rows with it. Again, you can remove the import of `SampleImage`.
 
 *src/components/ProductList.js*
 ```
@@ -295,7 +295,7 @@ class ProductList extends Component {
 export default ProductList;
 ```
 
-Your app should look just the same as before in the browser.
+Your app should look just the same as before in the browser but is now using React components rather than static HTML.
 
 Next, we'll hook this up to live product data using Commerce.js.
 
@@ -388,7 +388,9 @@ this.state = {
 }
 ```
 
-And we changed the `render` function to loop over the products list and create a product row for each item. At first this will display no rows because the product list in state is empty.
+And we changed the `render` function to loop over the products list and create a product row for each item, passing the product data into the row using its props. Note that we're also setting a `key` prop on the row. This is because React requires components in a list to each have a unique key.
+
+At first this will display no rows because the product list in state is empty.
 
 ```
 {
@@ -401,11 +403,11 @@ And we changed the `render` function to loop over the products list and create a
 Finally we added a `componentDidMount` function that calls the Commerce.js SDK and retrieves the product list. This function is called when the React component has been created and added to the DOM.
 
 ```
-  componentDidMount() {
-    commerce.products.list().then((result) => {
-      this.setState({ products: result.data });
-    });
-  }
+componentDidMount() {
+  commerce.products.list().then((result) => {
+    this.setState({ products: result.data });
+  });
+}
 ```
 
 The SDK `products.list()` function returns a [promise](https://javascript.info/promise-basics). When the promise returns we process it and add the products to the state. In reality you would also want to handle any possible error here too but we've skipped that for the sake of brevity.
