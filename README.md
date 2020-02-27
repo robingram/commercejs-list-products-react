@@ -400,10 +400,6 @@ And we changed the `render` function to loop over the products list and create a
 
 Finally we added a `componentDidMount` function that calls the Commerce.js SDK and retrieves the product list. This function is called when the React component has been created and added to the DOM.
 
-The SDK `products.list()` function returns a [promise](https://javascript.info/promise-basics). When the promise returns we process it and add the products to the state. In reality you would also want to handle any possible error here too but we've skipped that for the sake of brevity.
-
-React automatically notices this change to state and updates the component accordingly, displaying our live product list.
-
 ```
   componentDidMount() {
     commerce.products.list().then((result) => {
@@ -411,6 +407,10 @@ React automatically notices this change to state and updates the component accor
     });
   }
 ```
+
+The SDK `products.list()` function returns a [promise](https://javascript.info/promise-basics). When the promise returns we process it and add the products to the state. In reality you would also want to handle any possible error here too but we've skipped that for the sake of brevity.
+
+React automatically notices this change to state and updates the component accordingly, displaying our live product list.
 
 And there we are, a React app displaying live product data using the Commerce.js SDK.
 
