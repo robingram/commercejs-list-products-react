@@ -325,9 +325,9 @@ const ProductRow = ({ image, name, description, price }) => {
 }
 ```
 
-Note that we've changed the way the description is displayed significantly. Description data from Chec will be in HTML format and React would normally escape that and you would see HTML tags displayed as text in the page. `dangerouslySetInnerHTML` test React that we are expecting HTML in this field and it should be displayed as is.
+Note that we've changed the way the description is displayed significantly. Description data from Chec will be in HTML format and React would normally escape that and you would see HTML tags displayed as text in the page. `dangerouslySetInnerHTML` tells React that we are expecting HTML in this field and it should be displayed as is.
 
-Once more we can remove the `import` of `sampleImage` in `ProductList.js` since from now on we'll be using real product images from Chec.
+Once more we can remove the `import` of `sampleImage` in `ProductRow.js` since from now on we'll be using real product images from Chec.
 
 Now we can import the Commerce.js SDK in `ProductList.js` and create an instance. You should use your *sandbox public* key which you will find **Setup** > **Developer** in the Chec dashboard.
 
@@ -398,7 +398,9 @@ And we changed the `render` function to loop over the products list and create a
 }
 ```
 
-Finally we added a `componentDidMount` function that calls the Commerce.js SDK and retrieves the product list. The SDK returns this as a [promise](https://javascript.info/promise-basics). When the promise returns we process it and add the products to the state. In reality you would also want to handle the error state here too but we've skipped that for the sake of brevity.
+Finally we added a `componentDidMount` function that calls the Commerce.js SDK and retrieves the product list. This function is called when the React component has been created and added to the DOM.
+
+The SDK `products.list()` function returns a [promise](https://javascript.info/promise-basics). When the promise returns we process it and add the products to the state. In reality you would also want to handle any possible error here too but we've skipped that for the sake of brevity.
 
 React automatically notices this change to state and updates the component accordingly, displaying our live product list.
 
