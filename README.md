@@ -216,6 +216,8 @@ class ProductList extends Component {
     );
   }
 }
+
+export default ProductList;
 ```
 
 Import the new component in `App.js`. You can also remove import of `SampleImage`.
