@@ -176,6 +176,7 @@ Next we'll extract this static HTML into React components, starting with the pro
 
 Create a new file `src/components/ProductList.js`. We'll create this as a *class* rather than *functional* component as this will come in useful later. You can read about the difference between the types of component [here](https://medium.com/@Zwenza/functional-vs-class-components-in-react-231e3fbd7108).
 
+*src/components/ProductList.js*
 ```
 import React, { Component } from 'react';
 import sampleImage from '../logo192.png';
