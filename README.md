@@ -26,7 +26,7 @@ To get the most from this guide a working knowledge of HTML and JavaScript will 
 
 Create some products in your Chec dashboard with at least a name, description, image and price. We won't need many for the purposes of this guide. See the example below of a small number of t-shirts using a basic illustration as the image.
 
-![Check products](images/chec-products/png)
+![Check products](images/chec-products.png)
 
 ## App setup
 
