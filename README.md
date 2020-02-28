@@ -10,6 +10,8 @@ In this example we will create an application that lists products from Chec. We 
 1. Create React components from a simple HTML template to display static product data
 1. Hook up the components to the Chec API using Commerce.js to display live product data
 
+[Live demo](http://commercejs-example-guide.s3-website-ap-southeast-2.amazonaws.com/).
+
 ### Requirements
 
 To follow along with this guide you will need:
@@ -416,4 +418,4 @@ React automatically notices this change to state and updates the component accor
 
 And there we are, a React app displaying live product data using the Commerce.js SDK.
 
-You can see a live demo of this [here]().
+You can see a live demo of this [here](http://commercejs-example-guide.s3-website-ap-southeast-2.amazonaws.com/).
