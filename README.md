@@ -378,9 +378,9 @@ Your app should now be displaying your live products from Chec!
 
 ![Live products list](images/live-products.png)
 
-Let's tak a look at what's happened in `ProductList` because we've made a lot of changes.
+Let's take a look at what's happened in `ProductList` because we've made a lot of changes.
 
-To begin with we initialised some state in the components constructor, in this case with an empty products list.
+To begin with we initialised some state in the component's constructor, in this case with an empty products list.
 
 ```
 this.state = {
