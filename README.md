@@ -18,6 +18,7 @@ To follow along with this guide you will need:
 
 * A Chec dashboard account. You can [sign up for free](https://dashboard.chec.io/signup) if you don't already have one.
 * [Node.js](https://nodejs.org/) version 8 or greater.
+* `npm` or `yarn` for package management. `npm` is included in the Node.js installation and `yarn` with `create-react-app` which we'll be using later.
 * A code editor such as [Visual Studio Code](https://code.visualstudio.com/).
 
 ### Prerequisites
