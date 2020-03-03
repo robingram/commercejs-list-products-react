@@ -24,7 +24,7 @@ To follow along with this guide you will need:
 
 To get the most from this guide a working knowledge of HTML and JavaScript will help but isn't necessary. Some knowledge of Node.js and yarn would also help but again isn't required. You will need to be familiar with using the command line/terminal on your computer.
 
-## Check setup
+## Chec Dashboard setup
 
 Create some products in your Chec dashboard with at least a name, description, image and price. We won't need many for the purposes of this guide. See the example below of a small number of t-shirts using a basic illustration as the image.
 
