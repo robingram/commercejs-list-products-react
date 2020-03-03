@@ -7,7 +7,7 @@ This guide will illustrate how to create a simple list of products from Chec usi
 In this example we will create an application that lists products from Chec. We will:
 
 1. Create a new React app and install the Commerce.js SDK
-1. Create React components from a simple HTML template to display static product data
+1. Create React components to display static product data
 1. Hook up the components to the Chec API using Commerce.js to display live product data
 
 [Live demo](http://commercejs-example-guide.s3-website-ap-southeast-2.amazonaws.com/).
@@ -82,9 +82,9 @@ yarn add @chec/commerce.js
 
 We'll see how to initialise and use the SDK later.
 
-## Create a static HTML products list
+## Create React components for the products list
 
-To begin we'll create a static HTML version of how we want our app to look.
+To begin we'll create two React components to display our products. One will represent the overall product list and the other an individual product. Initially we'll hard code some values for the product and later replace this with live data from Commerce.js.
 
 For the moment we'll use the React logo image that is included as part of the standard app as a placeholder for our product images so copy it to the `src` directory.
 
@@ -92,55 +92,7 @@ For the moment we'll use the React logo image that is included as part of the st
 cp public/logo192.png src/
 ```
 
-And replace the `logo` import in the `App.js` file to import this image.
-
-*src/App.js*
-```
-import sampleImage from './logo192.png';
-```
-
-Now we'll replace the body of the `App` component with some static HTML that we'll extract into components later.
-
-*src/App.js*
-```
-function App() {
-  return (
-    <div className="container">
-      <header className="header">
-        <h1>My Products</h1>
-      </header>
-      <div className="container main-content">
-        <div className="row product">
-          <div className="col-md-2">
-            <img src={sampleImage} alt="Sample Image" height="150" />
-          </div>
-          <div className="col-md-8 product-detail">
-            <h4>Blue T-Shirt</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <div className="col-md-2 product-price">
-            $19.99
-          </div>
-        </div>
-        <div className="row product">
-          <div className="col-md-2">
-            <img src={sampleImage} alt="Sample Image" height="150" />
-          </div>
-          <div className="col-md-8 product-detail">
-            <h4>Blue T-Shirt</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <div className="col-md-2 product-price">
-            $19.99
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-```
-
-Add the following CSS after the `code` element in the `index.css` file.
+Add the following CSS after the `code` element in the `src/index.css` file to style our list.
 
 *src/index.css*
 ```
@@ -169,84 +121,11 @@ header {
 }
 ```
 
-The application should have reloaded and look something like the image below.
+### Product row component
 
-![Static products list](images/static-products.png)
+The `ProductRow` component displays information about an individual [product](https://commercejs.com/docs/api/#products).
 
-## Extract React components
-
-Next we'll extract this static HTML into React components, starting with the product list.
-
-Create a new file `src/components/ProductList.js`. We'll create this as a *class* rather than *functional* component as this will come in useful later. You can read about the difference between the types of component [here](https://medium.com/@Zwenza/functional-vs-class-components-in-react-231e3fbd7108).
-
-*src/components/ProductList.js*
-```
-import React, { Component } from 'react';
-import sampleImage from '../logo192.png';
-
-class ProductList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="container main-content">
-        <div className="row product">
-          <div className="col-md-2">
-            <img src={sampleImage} alt="Sample Image" height="150" />
-          </div>
-          <div className="col-md-8 product-detail">
-            <h4>Blue T-Shirt</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <div className="col-md-2 product-price">
-            $19.99
-          </div>
-        </div>
-        <div className="row product">
-          <div className="col-md-2">
-            <img src={sampleImage} alt="Sample Image" height="150" />
-          </div>
-          <div className="col-md-8 product-detail">
-            <h4>Blue T-Shirt</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <div className="col-md-2 product-price">
-            $19.99
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-export default ProductList;
-```
-
-Import the new component in `App.js`. You can also remove import of `SampleImage`.
-
-*src/App.js*
-```
-import React from 'react';
-import './App.css';
-import ProductList from './components/ProductList';
-
-function App() {
-  return (
-    <div className="container">
-      <header className="header">
-        <h1>My Products</h1>
-      </header>
-      <ProductList />
-    </div>
-  );
-}
-
-export default App;
-```
-
-Next we'll extract the product row into its own component. Create `src/components/ProductRow.js` with the following code.
+Create a file named `src/components/ProductRow.js` with the following code.
 
 *src/components/ProductRow.js*
 ```
@@ -273,7 +152,13 @@ const ProductRow = () => {
 export default ProductRow;
 ```
 
-Import the new component into `ProductList.js` and replace the static HTML rows with it. Again, you can remove the import of `SampleImage`.
+Notice how we're importing the logo image we copied earlier and using it as the `src` attribute of our `img` tag.
+
+### Product list component
+
+The `ProductList` component is a holder for multiple `ProductRow`s. Eventually this component will contain the code to fetch the live product data using Commerce.js.
+
+Create a new file `src/components/ProductList.js`. We'll create this as a *class* rather than *functional* component as this will come in useful later. You can read about the difference between the types of component [here](https://medium.com/@Zwenza/functional-vs-class-components-in-react-231e3fbd7108).
 
 *src/components/ProductList.js*
 ```
@@ -298,7 +183,35 @@ class ProductList extends Component {
 export default ProductList;
 ```
 
-Your app should look just the same as before in the browser but is now using React components rather than static HTML.
+At this stage we're hard coding two instances of `ProductRow` but later we'll change this to loop and display a row for each product from the dashboard.
+
+### Use the components in the App
+
+Finally, update `App.js` to use the list component within some `bootstrap` framing HTML.
+
+*src/App.js*
+```
+import React from 'react';
+import './App.css';
+import ProductList from './components/ProductList';
+
+function App() {
+  return (
+    <div className="container">
+      <header className="header">
+        <h1>My Products</h1>
+      </header>
+      <ProductList />
+    </div>
+  );
+}
+
+export default App;
+```
+
+When you save this file the application should reload and look something like the image below.
+
+![Static products list](images/static-products.png)
 
 Next, we'll hook this up to live product data using Commerce.js.
 
@@ -328,13 +241,13 @@ const ProductRow = ({ image, name, description, price }) => {
 }
 ```
 
-Note that we've changed the way the description is displayed significantly. Description data from Chec will be in HTML format and React would normally escape that and you would see HTML tags displayed as text in the page. `dangerouslySetInnerHTML` tells React that we are expecting HTML in this field and it should be displayed as is.
+The values from the props can be inserted into the HTML by surrounding them in curly braces, e.g. `{name}`. Note that we've changed the way the description is displayed significantly. Description data from Chec will be in HTML format and React would normally escape that for security reasons and you would see HTML tags displayed as text in the page. `dangerouslySetInnerHTML` tells React that we are expecting HTML in this field and it should be displayed as is.
 
-Once more we can remove the `import` of `sampleImage` in `ProductRow.js` since from now on we'll be using real product images from Chec.
+We can remove the `import` of `sampleImage` in `ProductRow.js` since from now on we'll be using real product images from Chec.
 
 Now we can import the Commerce.js SDK in `ProductList.js` and create an instance. You should use your *sandbox public* key which you will find **Setup** > **Developer** in the Chec dashboard.
 
-We'll also update the component to call the `products` API endpoint and display the results.
+We'll also update the component to call the [`products` API endpoint](https://commercejs.com/docs/api/#list-all-products) and display the results.
 
 *src/components/ProductList.js*
 ```
