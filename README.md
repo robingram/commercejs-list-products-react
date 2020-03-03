@@ -245,7 +245,7 @@ The values from the props can be inserted into the HTML by surrounding them in c
 
 We can remove the `import` of `sampleImage` in `ProductRow.js` since from now on we'll be using real product images from Chec.
 
-Now we can import the Commerce.js SDK in `ProductList.js` and create an instance. You should use your *sandbox public* key which you will find **Setup** > **Developer** in the Chec dashboard.
+Now we can import the Commerce.js SDK in `ProductList.js` and create an instance. You should use your *sandbox public* key which you will find in **Setup** > **Developer** in the Chec dashboard.
 
 We'll also update the component to call the [`products` API endpoint](https://commercejs.com/docs/api/#list-all-products) and display the results.
 
@@ -304,7 +304,7 @@ this.state = {
 }
 ```
 
-And we changed the `render` function to loop over the products list and create a product row for each item, passing the product data into the row using its props. Note that we're also setting a `key` prop on the row. This is because React requires components in a list to each have a unique key.
+And we changed `render` to use the `map` function to transform the list of products from state into a corresponding list of `ProductRow` components. The argument we provide to `map` is a function that receives a single product as an argument and returns an instance of the row component, passing in the product data as its props. Note that we're also setting a `key` prop on the row. This is because React requires components in a list to each have a unique key.
 
 At first this will display no rows because the product list in state is empty.
 
