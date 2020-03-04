@@ -1,4 +1,4 @@
-# Listing products with React.js
+# Listing products with React.js and Commerce.js
 
 This guide will illustrate how to create a simple list of products from Chec using Commerce.js and React.js.
 
@@ -41,9 +41,9 @@ We'll use `create-react-app` to install the base application. This can be called
 npx create-react-app react-list-products
 cd react-list-products
 ```
-This creates an application called `react-list-products` and changes directory so that we are at the root of the project.
+This creates an application called `react-list-products` and changes the directory so that we are at the root of the project.
 
-Next add bootstrap.
+Next, add bootstrap.
 
 ```
 yarn add bootstrap
@@ -243,7 +243,7 @@ const ProductRow = ({ image, name, description, price }) => {
 
 The values from the props can be inserted into the HTML by surrounding them in curly braces, e.g. `{name}`. Note that we've changed the way the description is displayed significantly. Description data from Chec will be in HTML format and React would normally escape that for security reasons and you would see HTML tags displayed as text in the page. `dangerouslySetInnerHTML` tells React that we are expecting HTML in this field and it should be displayed as is.
 
-We can remove the `import` of `sampleImage` in `ProductRow.js` since from now on we'll be using real product images from Chec.
+We can remove the `import` of `sampleImage` in `ProductRow.js` since from now on we'll be using real product images from the Chec Dashboard.
 
 Now we can import the Commerce.js SDK in `ProductList.js` and create an instance. You should use your *sandbox public* key which you will find in **Setup** > **Developer** in the Chec dashboard.
 
