@@ -27,7 +27,7 @@ To get the most from this guide a working knowledge of HTML and JavaScript will 
 
 ## Chec Dashboard setup
 
-Create some products in your Chec dashboard with at least a name, description, image and price. We won't need many for the purposes of this guide. See the example below of a small number of t-shirts using a basic illustration as the image.
+Create some products in your Chec Dashboard with at least a name, description, image and price. We won't need many for the purposes of this guide. See the example below of a small number of t-shirts using a basic illustration as the image.
 
 ![Check products](images/chec-products.png)
 
@@ -245,7 +245,7 @@ The values from the props can be inserted into the HTML by surrounding them in c
 
 We can remove the `import` of `sampleImage` in `ProductRow.js` since from now on we'll be using real product images from the Chec Dashboard.
 
-Now we can import the Commerce.js SDK in `ProductList.js` and create an instance. You should use your *sandbox public* key which you will find in **Setup** > **Developer** in the Chec dashboard.
+Now we can import the Commerce.js SDK in `ProductList.js` and create an instance. You should use your *sandbox public* key which you will find in **Setup** > **Developer** in the Chec Dashboard.
 
 We'll also update the component to call the [`products` API endpoint](https://commercejs.com/docs/api/#list-all-products) and display the results.
 
